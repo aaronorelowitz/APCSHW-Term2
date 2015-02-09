@@ -1,4 +1,4 @@
-public class Recursion{
+public class Recursion implements hw1{
 
     public String name(){
 	return "Orelowitz,Aaron";
@@ -7,7 +7,9 @@ public class Recursion{
     public int fact(int n){
 	int ans;
 	if (n < 0){
-	    throw new IllegalArgumentException("the given number  must be positive");}
+	    throw new IllegalArgumentException();}
+	if (n == 0){
+	    return 1;  }  
 	if (n!=1){
 	    ans = fact(n-1) * n;}
 	else{return 1;}
@@ -17,7 +19,7 @@ public class Recursion{
 
     public int fib(int n){
 	if (n < 0){
-	    throw new IllegalArgumentException("the given number  must be positive");}
+	    throw new IllegalArgumentException();}
 	if (n == 0){
 	    return 0;}
 	return fibHelp(n-1, 1, 0);
@@ -35,7 +37,7 @@ public class Recursion{
 
     public double sqrt(double n){
 	if (n < 0){
-	    throw new IllegalArgumentException("the given number  must be positive");}
+	    throw new IllegalArgumentException();}
 	return sqrtHelp(n, 1);
     }
 
@@ -47,7 +49,20 @@ public class Recursion{
 	return sqrtHelp(n, x);
     }
 
-
-
+    public static void main(String[]args){
+	Recursion a = new Recursion();
+	System.out.println(a.fib(0));
+	System.out.println(a.fib(2));
+	System.out.println(a.fib(5));
+	System.out.println(a.fib(10));
+	System.out.println(a.fact(0));
+	System.out.println(a.fact(1));
+	System.out.println(a.fact(5));
+	System.out.println(a.sqrt(169.0));
+	System.out.println(a.sqrt(1.0));
+	System.out.println(a.sqrt(1.0E-8));
+	System.out.println(a.sqrt(0.0));
+	   
+    }
 
 }
