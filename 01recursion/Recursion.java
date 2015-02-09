@@ -49,20 +49,4 @@ public class Recursion implements hw1{
 	return sqrtHelp(n, x);
     }
 
-    public static void main(String[]args){
-	Recursion a = new Recursion();
-	System.out.println(a.fib(0));
-	System.out.println(a.fib(2));
-	System.out.println(a.fib(5));
-	System.out.println(a.fib(10));
-	System.out.println(a.fact(0));
-	System.out.println(a.fact(1));
-	System.out.println(a.fact(5));
-	System.out.println(a.sqrt(169.0));
-	System.out.println(a.sqrt(1.0));
-	System.out.println(a.sqrt(1.0E-8));
-	System.out.println(a.sqrt(0.0));
-	   
-    }
-
 }
