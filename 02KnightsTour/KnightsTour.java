@@ -1,4 +1,4 @@
- import java.util.*;
+import java.util.*;
 import java.io.*;
 
 
@@ -55,5 +55,11 @@ public class KnightsTour{
 	return false;
     }
     
+
+    public static void main(String[]args){
+	KnightsTour x = new KnightsTour();
+	x.solve();
+				
+    }
     
 }
