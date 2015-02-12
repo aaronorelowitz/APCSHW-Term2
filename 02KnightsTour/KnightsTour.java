@@ -26,18 +26,24 @@ public class KnightsTour{
     
     public String toString(){
 	String ans = "\n";
-	//build your knights tour here...
-	return hide + go(0,0) + ans + "\n" + show;
+	for(int x = 0; x < board.length; x++){
+	    for(int y = 0; y < board[x].length; y++){
+		ans = ans + board[x][y];}
+	    ans = ans + "\n";}
+	return ans;
     }
     
     public KnightsTour(int size){
-	
+	board = new int[size][size];
+	for(int x = 0; x < board.length; x++){
+	    for(int y = 0; y < board[x].length; y++){
+		board[x][y] = 0;}}
     }
     
     
     
     public void solve(){
-	
+	return solve(0, 0)
     }
     
     
@@ -49,16 +55,18 @@ public class KnightsTour{
     
     
     public boolean solve(int x,int y,int currentMoveNumber){
-	System.out.println(this);
-	wait(20);
-	
-	return false;
-    }
+	if(x > board.length || y > board.length){
+	    return false;}
+	if(board[x][y] !== 0){
+	    return false;}
+	board[x][y] = currentMoveNumber;
+	return (solve(/*fill this in with the different options*/))
+	}
     
 
     public static void main(String[]args){
-	KnightsTour x = new KnightsTour();
-	x.solve();
+	KnightsTour x = new KnightsTour(4);
+	System.out.println(x);
 				
     }
     
