@@ -8,7 +8,7 @@ public class KnightsTour{
     final static String clear =  "\033[2J";
     final static String hide =  "\033[?25l";
     final static String show =  "\033[?25h";
-    private int[][]board;
+    private String[][]board;
 
     
     //terminal specific character to move the cursor
@@ -25,7 +25,7 @@ public class KnightsTour{
     }
     
     public String toString(){
-	String ans = "\n";
+	String ans = "" + solve() + "\n";
 	for(int x = 0; x < board.length; x++){
 	    for(int y = 0; y < board[x].length; y++){
 		ans = ans + board[x][y];}
@@ -34,10 +34,10 @@ public class KnightsTour{
     }
     
     public KnightsTour(int size){
-	board = new int[size][size];
+	board = new String[size][size];
 	for(int x = 0; x < board.length; x++){
 	    for(int y = 0; y < board[x].length; y++){
-		board[x][y] = 0;}}
+		board[x][y] = " 0  ";}}
     }
     
     
@@ -55,32 +55,42 @@ public class KnightsTour{
     
     
     public boolean solve(int x,int y,int currentMoveNumber){
-	System.out.println(this);
-	wait(20);
+	String z = " ";
+	if (currentMoveNumber >= 100){
+	    z = z + currentMoveNumber;}
+	if (currentMoveNumber >= 10){
+	    z = z + currentMoveNumber + " ";}
+	else {z = z + currentMoveNumber + "  ";}
 	if(x < 0 || x >= board.length || y < 0 || y >= board.length){
 	    return false;}
-	if(board[x][y] != 0){
+	if(board[x][y] != " 0  "){
 	    return false;}
-	board[x][y] = currentMoveNumber;
+	board[x][y] = z;
 	if(currentMoveNumber == board.length * board.length){
 	    return true;}
-	if(solve(x + 1,y + 2,currentMoveNumber + 1) ||
-	   solve(x + 1,y - 2,currentMoveNumber + 1) ||
-	   solve(x - 1,y + 2,currentMoveNumber + 1) ||
-	   solve(x - 1,y - 2,currentMoveNumber + 1) ||
-	   solve(x + 2,y + 1,currentMoveNumber + 1) ||
-	   solve(x + 2,y - 1,currentMoveNumber + 1) ||
-	   solve(x - 2,y + 1,currentMoveNumber + 1) ||
-	   solve(x - 2,y - 1,currentMoveNumber + 1)){
-	    return true;}
+	if(solve(x + 1,y + 2,currentMoveNumber + 1))
+	    return true;
+	if(solve(x + 1,y - 2,currentMoveNumber + 1)) 
+	    return true;
+	if(solve(x - 1,y + 2,currentMoveNumber + 1)) 
+	    return true;
+	if(solve(x - 1,y - 2,currentMoveNumber + 1))
+	    return true;
+	if(solve(x + 2,y + 1,currentMoveNumber + 1))
+	    return true;
+	if(solve(x + 2,y - 1,currentMoveNumber + 1))
+	    return true;
+	if (solve(x - 2,y + 1,currentMoveNumber + 1))
+	    return true;
+	if(solve(x - 2,y - 1,currentMoveNumber + 1))
+	    return true;
+	board[x][y] = " 0  ";	
 	return false;
 	}
     
 
     public static void main(String[]args){
-	KnightsTour x = new KnightsTour(6);
-	System.out.println(x);
-	System.out.println(x.solve());
+	KnightsTour x = new KnightsTour(7);
 	System.out.println(x);
 				
     }
