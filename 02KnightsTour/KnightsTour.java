@@ -25,7 +25,7 @@ public class KnightsTour{
     }
     
     public String name(){
-	return "orelowitz.aaron"
+	return "orelowitz.aaron";
     }
     
     public String toString(){
