@@ -24,6 +24,10 @@ public class KnightsTour{
 	}
     }
     
+    public String name(){
+	return "orelowitz.aaron"
+    }
+    
     public String toString(){
 	String ans = "" + solve() + "\n";
 	for(int x = 0; x < board.length; x++){
