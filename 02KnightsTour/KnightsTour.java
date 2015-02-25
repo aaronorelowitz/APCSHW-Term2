@@ -29,7 +29,7 @@ public class KnightsTour{
     }
     
     public String toString(){
-	String ans = "" + solve() + "\n";
+	String ans = "\n";
 	for(int x = 0; x < board.length; x++){
 	    for(int y = 0; y < board[x].length; y++){
 		ans = ans + board[x][y];}
@@ -94,9 +94,20 @@ public class KnightsTour{
     
 
     public static void main(String[]args){
-	KnightsTour x = new KnightsTour(7);
-	System.out.println(x);
-				
+	KnightsTour t = new KnightsTour(5);
+	System.out.println(t.name());
+	System.out.println("Knights Tour:");	
+	t.solve();
+	System.out.println(t);
+	 KnightsTour x = new KnightsTour(5);
+	 x.solve(3,3);
+	 System.out.println(x);
+	 KnightsTour z = new KnightsTour(6);
+	if(z.solve()){
+		System.out.println(z);
+	}else{
+		System.out.println("Cannot solve");
+	}
     }
     
 }
