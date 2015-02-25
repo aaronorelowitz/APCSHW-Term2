@@ -30,7 +30,7 @@ public class NQueens{
     }
     
     public String toString(){
-	String ans = ""+ solve() + "\n";
+	String ans = "\n";
 	for(int x = 0; x < board.length; x++){
 	    for(int y = 0; y < board[x].length; y++){
 		ans = ans + board[x][y];}
@@ -87,8 +87,20 @@ public class NQueens{
     
 
     public static void main(String[]args){
-	NQueens x = new NQueens(8);
-	System.out.println(x);			
+	 NQueens z = new NQueens(5);
+	 System.out.println(z.name());
+	 System.out.println("NQueens:");
+        NQueens q = new NQueens(5);
+	q.solve();
+	System.out.println(q);
+	NQueens x = new NQueens(5);
+	x.solve(3);
+	System.out.println(x);		
+	if(x.solve()){
+		System.out.println(x);
+	}else{
+		System.out.println("Cannot solve");
+	}
     }
     
 }
