@@ -1,6 +1,28 @@
 import java.util.*;
 public class Sorts{
- public int[] merge(int[] a, int[] b){
+
+
+    
+    
+    public static void mergesort(int[] a){
+	a = mergesorthelp(a);
+
+    }
+
+ public static int[] mergesorthelp(int[] a){
+	 if (a.length >  1){
+	     int[] b = Arrays.copyOfRange(a, 0, a.length/2);
+	     int[] c = Arrays.copyOfRange(a, a.length/2, a.length);
+	     int[] a1 = mergesorthelp(b);
+	     int[] a2 = mergesorthelp(c);
+	     return merge(a1,a2);
+	 } else {
+	     return a;
+	 }
+     }
+
+
+ public static int[] merge(int[] a, int[] b){
  	int[] c = new int[a.length+b.length];
 	 int x=0;
 	 int y=0;
@@ -25,17 +47,5 @@ public class Sorts{
 	     }
 	  } 
 	 return c;
-     }
-
- public static void mergesort(int[] a){
-	 if (a.length >  1){
-	     int[] b = Arrays.copyOfRange(a, 0, a.length/2);
-	     int[] c = Arrays.copyOfRange(a, a.length/2, a.length);
-	     int[] a1 = mergesort(b);
-	     int[] a2 = mergesort(c);
-	     return merge(a1,a2);
-	 } else {
-	     return a;
-	 }
-     }
-     }
+ }
+}
