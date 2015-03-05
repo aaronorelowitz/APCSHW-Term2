@@ -57,7 +57,6 @@ public class ctravel {
 	String[] line0 = lines[0].split( " " );
         rows = Integer.parseInt( line0[0] );
 	cols = Integer.parseInt( line0[1] );
-	cols = Integer.parseInt( line0[1] );
 	String x = line0[2];
 	steps = Integer.parseInt( x );
 	pasture = new String[rows][cols];
@@ -75,7 +74,7 @@ public class ctravel {
 	x1 = Integer.parseInt( line0[2] );
 	y1 = Integer.parseInt( line0[3] );
 
-	solve(pasture, x0, y0, x1, y1, steps);
+	System.out.println(solve(pasture, x0, y0, x1, y1, steps));
     }
 }
  
