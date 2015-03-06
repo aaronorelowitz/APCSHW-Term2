@@ -14,7 +14,7 @@ public class QuickSelect{
 		D[i] = ary[i];}
 	}
 	int x = random.nextInt(ei - si);
-	for (int i = si; i < ary.length; i++){
+	for (int i = si; i <= ei; i++){
 	    if(ary[i] < ary[x]){
 		D[smallestopen] = ary[i];
 		smallestopen = smallestopen + 1;}
