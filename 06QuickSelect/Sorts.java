@@ -1,4 +1,3 @@
-
 import java.util.*;
 
 public class Sorts{
@@ -7,11 +6,10 @@ public class Sorts{
 
 
     public int quickSelect(int[]ary, int num){
-	return quickSelectHelp(ary, 0, ary.length, num);
+	return quickSelectHelp(ary, 0, ary.length - 1, num);
     }
     
     public int quickSelectHelp(int[]ary, int si, int ei, int num){
-	if(ary.length != 1){
 	    int smallestopen=si;
 	    int biggestopen = ei;
 	    random = new Random();
@@ -24,18 +22,19 @@ public class Sorts{
 	    System.out.println(ary[x]);
 	    for (int i = si; i <= ei; i++){
 		System.out.println(Arrays.toString(D));
-		if(ary[i] < ary[x]){
+		if(ary[i] < ary[si + x]){
 		    D[smallestopen] = ary[i];
 		    smallestopen = smallestopen + 1;}
-		if(ary[i] > ary[x]){
+		if(ary[i] > ary[si + x]){
 		    D[biggestopen] = ary[i];
 		    biggestopen = biggestopen - 1;}
 	    }
-	    D[smallestopen] = ary[x];
-	    if(num < smallestopen){
-		return quickSelectHelp(D, 0, smallestopen, num);
-	    }else{return quickSelectHelp(D, smallestopen, D.length, num);}}
-    return ary[0];   	    	   
+	    D[smallestopen] = ary[si +x];
+	    if(num - 1 < smallestopen){
+		return quickSelectHelp(D, si, smallestopen - 1, num);}
+	    if(num - 1 == smallestopen){
+		return D[smallestopen];
+	    }else{return quickSelectHelp(D, smallestopen + 1, ei, num);}  	    	   
     }
 
 
@@ -68,9 +67,9 @@ public class Sorts{
 
     }
     public static void main(String[]args){
-	QuickSelect a = new QuickSelect();
+	Sorts a = new Sorts();
 	int[]x = {1,3,5,2,4,8,6,7,9};
-	a.quickSelect(x, 3);
+	System.out.println(a.quickSelect(x, 9));
 	
     }
 
