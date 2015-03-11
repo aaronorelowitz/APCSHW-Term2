@@ -1,5 +1,4 @@
- 
-import java.util.*
+import java.util.*;
 
 public class LNode{
     private int value;
@@ -18,8 +17,8 @@ public class LNode{
 	value = newValue;
     }
 
-    public int toString(){
-	return value;}
+    public String toString(){
+	return "" +  value;}
 
 
 }
