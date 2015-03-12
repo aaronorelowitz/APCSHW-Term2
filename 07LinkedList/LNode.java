@@ -4,6 +4,16 @@ public class LNode{
     private int value;
     private LNode next;
 
+    public LNode(int val, LNode nex){
+	value = val;
+	next = nex;
+    }
+
+    public LNode(int val){
+	value = val;
+	next = null;
+    }
+
     public LNode getNext(){
 	return next;}
 
