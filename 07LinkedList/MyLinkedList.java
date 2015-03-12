@@ -7,11 +7,12 @@ public class MyLinkedList{
     public String toString(){
 	String ans = "[ ";
 	LNode x = head; 
-	while(x.getNext() != null){
+	while(x != null){
 	    ans = ans + x.getValue() + ", ";
 	    x = x.getNext();}
-	return ans;
+	return ans.substring(0, ans.length() - 1) + "]";
     }
+
 
     
 
