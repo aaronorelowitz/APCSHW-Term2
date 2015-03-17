@@ -1,10 +1,26 @@
 import java.util.*;
 
-public class MyLinkedList{
+public class MyLinkedList<T>/* implements Iterable */{
 
     public LNode head;
     public LNode tail;
     public int size;
+
+    /*   public class MLLIterator<T> implements Iterator<T>{
+	public LNode head;
+	
+	public MLLIterator(){
+	    head = get(0);
+	}
+
+	public boolean hasNext(){}
+
+	public T next(){}
+	
+	public void remove()  throws UnsupportedOperationException{}
+	} */
+
+
     
     public MyLinkedList(){
 	head = null;
