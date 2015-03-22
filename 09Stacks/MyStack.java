@@ -18,10 +18,15 @@ public class MyStack{
     }
 
     public Object pop(){
-	x = elements[elements.length - amount];
+	Object x = elements[elements.length - amount];
 	elements[elements.length - amount] = null;
 	amount = amount - 1;
 	return x;
     }
+
+    public Object peek(){
+        return elements[elements.length - amount];
+    }
+    
 	
 }
