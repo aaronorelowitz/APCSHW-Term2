@@ -12,8 +12,16 @@ public class MyStack{
 
     public void push(Object x){
 	if(amount < elements.length){
-	    elements[elements.length - 1 - amount] = x;}
+	    elements[elements.length - 1 - amount] = x;
+	    amount = amount + 1;}
 
+    }
+
+    public Object pop(){
+	x = elements[elements.length - amount];
+	elements[elements.length - amount] = null;
+	amount = amount - 1;
+	return x;
     }
 	
 }
