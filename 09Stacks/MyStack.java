@@ -1,32 +1,21 @@
 import java.util.*;
 
-public class MyStack{
+public class MyStack<E> extends MyLinkedList<E> {
     
-    public Object[] elements;
-    public int amount;
-    
-    public MyStack(int x){
-	amount = 0;
-	elements = new Object[x];
-    }
-
-    public void push(Object x){
-	if(amount < elements.length){
-	    elements[elements.length - 1 - amount] = x;
-	    amount = amount + 1;}
-
-    }
-
-    public Object pop(){
-	Object x = elements[elements.length - amount];
-	elements[elements.length - amount] = null;
-	amount = amount - 1;
+    public Object push(Object x) {
+	add(x);
 	return x;
     }
 
-    public Object peek(){
-        return elements[elements.length - amount];
+    public Object pop() {
+	return remove(size-1);
     }
-    
-	
+
+    public Object peek() throws NoSuchElementException {
+	try {
+	    return get(size-1);
+	} catch (IndexOutOfBoundsException e) {
+	    throw new NoSuchElementException();
+	}
+    }
 }
