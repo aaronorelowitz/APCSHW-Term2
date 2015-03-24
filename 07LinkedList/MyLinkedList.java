@@ -1,31 +1,19 @@
 import java.util.*;
 
-public class MyLinkedList<T>/* implements Iterable */{
+public class MyLinkedList{
 
     public LNode head;
     public LNode tail;
     public int size;
-
-    /*   public class MLLIterator<T> implements Iterator<T>{
-	public LNode head;
-	
-	public MLLIterator(){
-	    head = get(0);
-	}
-
-	public boolean hasNext(){}
-
-	public T next(){}
-	
-	public void remove()  throws UnsupportedOperationException{}
-	} */
-
-
     
     public MyLinkedList(){
 	head = null;
 	tail = null;
 	size = 0;}
+
+
+    public String name(){
+	return "orelowitz.aaron";}
 
     public String toString(){
 	String ans = "[ ";
@@ -36,7 +24,7 @@ public class MyLinkedList<T>/* implements Iterable */{
 	return ans.substring(0, ans.length() - 2) + "]";
     }
 
-    public boolean add(int e){
+    public boolean add(Object e){
 	LNode node = new LNode(e);
 	if(head == null){
 	    head = node;}
@@ -47,7 +35,7 @@ public class MyLinkedList<T>/* implements Iterable */{
     
     
 
-    public boolean add(int index, int e){
+    public boolean add(int index, Object e){
 	LNode node = new LNode(e);
 	if (index < 0 || index > size){
 	    return false;}
@@ -60,6 +48,8 @@ public class MyLinkedList<T>/* implements Iterable */{
 	x.setNext(node);
 	if(index == size){
 	    tail = node;}
+	if(index == 0){
+	    head = node;}
 	size++;
 	return true;
     }
@@ -77,7 +67,7 @@ public class MyLinkedList<T>/* implements Iterable */{
     }
 
     
-     public boolean set(int index, int e){
+     public boolean set(int index, object e){
 	 LNode node = new LNode(e);
 	 if (index < 0 || index > size){
 	     return false;}
@@ -89,10 +79,37 @@ public class MyLinkedList<T>/* implements Iterable */{
 	 node.setNext(z);
 	 if(index == size){
 	    tail = node;}
+	 if(index == 0){
+	     head = node;}
 	 size++;
 	 return true;
      }
     
+
+    public LNode remove(int index){
+	if (index < 0 || index > size){
+	    return null;}
+	else{
+	    LNode x = get(index);
+	    if(index == 0){
+		head = x.getNext();}
+	    else if(index == size){
+		(get(index-1)).setNext(null); 
+		tail = get(index-1);}
+	    else{get(index-1).setNext(x.getNext());}
+	    size = size -1;
+	    return x;
+	}}
+
+    public int indexOf(Object N){
+	LNode x = head;
+	if(x.getValue()==N){
+	    return 0;}	
+	for (int i = 0; i < size; i++){
+	    x = x.getNext();
+	    if(x.getValue()==N){
+		return i + 1;}}
+	return -1;}
     
 
 
@@ -115,6 +132,10 @@ public class MyLinkedList<T>/* implements Iterable */{
 	System.out.println(test.get(3));
 	System.out.println(test.get(4));
 	test.set(3,8);
+	System.out.println(test);
+	System.out.println(test.remove(3));
+	System.out.println(test);
+	System.out.println(test.remove(0));
 	System.out.println(test);
     }
 
