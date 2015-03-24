@@ -1,3 +1,4 @@
+
 import java.util.*;
 
 public class MyLinkedList<E>{
@@ -67,7 +68,7 @@ public class MyLinkedList<E>{
     }
 
     
-     public boolean set(int index, object e){
+     public boolean set(int index, Object e){
 	 LNode node = new LNode(e);
 	 if (index < 0 || index > size){
 	     return false;}
@@ -86,7 +87,7 @@ public class MyLinkedList<E>{
      }
     
 
-    public LNode remove(int index){
+    public Object remove(int index){
 	if (index < 0 || index > size){
 	    return null;}
 	else{
