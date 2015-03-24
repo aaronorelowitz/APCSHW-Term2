@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class MyLinkedList{
+public class MyLinkedList<E>{
 
     public LNode head;
     public LNode tail;
