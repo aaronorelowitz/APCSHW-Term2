@@ -17,5 +17,5 @@ public class MyStack<E> extends MyLinkedList<E> {
 	} catch (IndexOutOfBoundsException e) {
 	    throw new NoSuchElementException();
 	}
-    }
+    } 
 }
