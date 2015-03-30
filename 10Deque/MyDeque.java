@@ -37,7 +37,7 @@ public class MyDeque {
     public Object removeLast() {
 	if (size == list.length / 4)
 	    contract();
-        Object ans = list[];
+        Object ans = list[(start + size - 1) % list.length];
 	list[(start + size - 1) % list.length] = null;
 	size -= 1;
 	return ans;
@@ -49,7 +49,7 @@ public class MyDeque {
 
 
     public Object getLast(){
-	return [(start + size) % list.length];
+	return list[(start + size) % list.length];
     }
 
 
