@@ -3,11 +3,35 @@ public class Maze{
     private static final String hide =  "\033[?25l";
     private static final String show =  "\033[?25h";
     private String go(int x,int y){
-return ("\033[" + x + ";" + y + "H");
+    return ("\033[" + x + ";" + y + "H");
     }
 
-    /** Same constructor as before...*/
-    public Maze(String filename){     }
+    public Maze(String filename){
+	startx = -1;
+	starty = -1;
+	//read the whole maze into a single string first
+	String ans = "";
+	try{
+	    Scanner in = new Scanner(new File(filename));
+	    
+	    //keep reading next line
+	    while(in.hasNext()){
+		String line = in.nextLine();
+		if(maxy == 0){
+		    //calculate width of the maze
+		    maxx = line.length();
+		}
+		//every new line add 1 to the height of the maze
+		maxy++;
+		ans += line;
+	    }
+	}
+	catch(Exception e){
+	    System.out.println("File: " + filename + " could not be opened.");
+	    e.printStackTrace();
+	    System.exit(0);
+	}
+	
 
     public String toString();//do not do the funky character codes
 
