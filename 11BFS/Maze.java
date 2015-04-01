@@ -1,7 +1,14 @@
+import java.util.*;
+import java.io.*;
+
 public class Maze{
+    private char[][]maze;
+    private int maxx,maxy;
+    private int startx,starty;
     private static final String clear =  "\033[2J";
     private static final String hide =  "\033[?25l";
     private static final String show =  "\033[?25h";
+    
     private String go(int x,int y){
     return ("\033[" + x + ";" + y + "H");
     }
@@ -9,12 +16,9 @@ public class Maze{
     public Maze(String filename){
 	startx = -1;
 	starty = -1;
-	//read the whole maze into a single string first
 	String ans = "";
 	try{
 	    Scanner in = new Scanner(new File(filename));
-	    
-	    //keep reading next line
 	    while(in.hasNext()){
 		String line = in.nextLine();
 		if(maxy == 0){
@@ -32,28 +36,69 @@ public class Maze{
 	    System.exit(0);
 	}
 	
+    }
 
-    public String toString();//do not do the funky character codes
-
-    public String toString(boolean animate); //do the funky character codes when animate is true
-
+    public String toString(){
+	return "blah";
+    }
+    
+    public String toString(boolean animate){
+	String ans = "Solving a maze that is " + maxx + " by " + maxy + "\n";
+	for(int i = 0; i < maxx * maxy; i++){
+	    if(i % maxx == 0 && i != 0){
+		ans += "\n";
+	    }
+	    char c =  maze[i % maxx][i / maxx];
+	    if(c == '#'){
+		ans += color(38,47)+c;
+	    }else{
+		ans += color(32,40)+c;
+	    }
+	}
+	return hide + go(0,0) + ans + "\n" + show + color(37,40);
+    }
+    
     /**Solve the maze using a frontier in a BFS manner. 
      * When animate is true, print the board at each step of the algorithm.
      * Replace spaces with x's as you traverse the maze. 
      */
-    public boolean solveBFS(boolean animate){    }
-
+    // public boolean solveBFS(boolean animate){    }
+    
     /**Solve the maze using a frontier in a DFS manner. 
      * When animate is true, print the board at each step of the algorithm.
      * Replace spaces with x's as you traverse the maze. 
      */
-    public boolean solveDFS(boolean animate){    }
-
-    public boolean solveBFS(){
-return solveBFS(false);
+    public boolean solveDFS(boolean animate){  
+	if(startx < 0){
+	    System.out.println("No starting point 'S' found in maze.");
+	    return false;
+	}else{
+	    maze[startx][starty] = ' ';
+	    return solveDFS(startx,starty);
+	}
+	
     }
+
+    public boolean solveDFS(int x, int y){
+	System.out.println(this);
+	if(maze[x][y] == 'E'){
+	    return true;
+	}
+	if(maze[x][y] == ' '){
+	    maze[x][y] = '@';
+	    if( solveDFS(x + 1, y) || solveDFS( x, y + 1) ||
+		solveDFS(x - 1, y) ||	solveDFS(x, y - 1)){
+		return true;
+	    }
+	    maze[x][y] = '.';}
+	return false;
+    }
+
+    //    public boolean solveBFS(){
+    //	return solveBFS(false);
+    //}
     public boolean solveDFS(){
-return solveDFS(false);
+	return solveDFS(false);
     }
     
     
@@ -62,9 +107,23 @@ return solveDFS(false);
       *Precondition :  solveBFS() OR solveDFS() has already been called (otherwise an empty array is returned)
       *Postcondition:  the correct solution is in the returned array
        */
-    public int[] solutionCoordinates(){ }    
+    //  public int[] solutionCoordinates(){ }    
     
+
+    private String color(int foreground,int background){
+	return ("\033[0;" + foreground + ";" + background + "m");
+    }
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
