@@ -54,12 +54,12 @@ public class Maze{
 	    }
 	    char c =  maze[i % maxx][i / maxx];
 	    if(c == '#'){
-		ans += color(38,47)+c;
-						}else{
-		ans += color(32,40)+c;
+		ans += c;
+	    }else{
+		ans += c;
 	    }
 	}
-	return hide + go(0,0) + ans + "\n" + show + color(37,40);
+	return hide + go(0,0) + ans + "\n";
     }
     
     public String toString(boolean animate){
@@ -70,12 +70,12 @@ public class Maze{
 	    }
 	    char c =  maze[i % maxx][i / maxx];
 	    if(c == '#'){
-		ans += color(38,47)+c;
+		ans += c;
 	    }else{
-		ans += color(32,40)+c;
+		ans += c;
 	    }
 	}
-	return hide + go(0,0) + ans + "\n" + show + color(37,40);
+	return hide + go(0,0) + ans + "\n" + show;
     }
     
     /**Solve the maze using a frontier in a BFS manner. 
@@ -98,14 +98,24 @@ public class Maze{
 	}
 	
     }
+    
+    public void wait(int millis){
+	try {
+	    Thread.sleep(millis);
+	}
+	catch (InterruptedException e) {
+	}
+    }
 
     public boolean solveDFS(int x, int y){
+	wait(20);
+	clearTerminal();
 	System.out.println(this);
 	if(maze[x][y] == 'E'){
 	    return true;
 	}
 	if(maze[x][y] == ' '){
-	    maze[x][y] = '@';
+	    maze[x][y] = 'X';
 	    if( solveDFS(x + 1, y) || solveDFS( x, y + 1) ||
 		solveDFS(x - 1, y) ||	solveDFS(x, y - 1)){
 		return true;
@@ -121,19 +131,28 @@ public class Maze{
 	return solveDFS(false);
     }
     
+
+    public void clearTerminal(){
+	System.out.println(clear);}
     
        /**return an array [x1,y1,x2,y2,x3,y3...]
       *that contains the coordinates of the solution from start to end.
       *Precondition :  solveBFS() OR solveDFS() has already been called (otherwise an empty array is returned)
       *Postcondition:  the correct solution is in the returned array
        */
-    //  public int[] solutionCoordinates(){ }    
-    
+    //public int[] solutionCoordinates(){ }    
 
-    private String color(int foreground,int background){
-	return ("\033[0;" + foreground + ";" + background + "m");
-    }
+
 }
+
+
+
+
+
+
+
+
+
 
 
 
