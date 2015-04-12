@@ -59,24 +59,9 @@ public class Maze{
 		ans += c;
 	    }
 	}
-	return hide + go(0,0) + ans + "\n";
-    }
-    
-    public String toString(boolean animate){
-	String ans = "Solving a maze that is " + maxx + " by " + maxy + "\n";
-	for(int i = 0; i < maxx * maxy; i++){
-	    if(i % maxx == 0 && i != 0){
-		ans += "\n";
-	    }
-	    char c =  maze[i % maxx][i / maxx];
-	    if(c == '#'){
-		ans += c;
-	    }else{
-		ans += c;
-	    }
-	}
 	return hide + go(0,0) + ans + "\n" + show;
     }
+    
     
     /**Solve the maze using a frontier in a BFS manner. 
      * When animate is true, print the board at each step of the algorithm.
@@ -94,7 +79,7 @@ public class Maze{
 	    return false;
 	}else{
 	    maze[startx][starty] = ' ';
-	    return solveDFS(startx,starty);
+	    return solveDFS(startx,starty, animate);
 	}
 	
     }
@@ -107,17 +92,20 @@ public class Maze{
 	}
     }
 
-    public boolean solveDFS(int x, int y){
-	wait(20);
-	clearTerminal();
-	System.out.println(this);
+    public boolean solveDFS(int x, int y, boolean animate){
+	if (animate == true){
+	    wait(10);
+	    clearTerminal();
+	    System.out.println(this);
+	}
 	if(maze[x][y] == 'E'){
+	    System.out.println(this);
 	    return true;
 	}
 	if(maze[x][y] == ' '){
 	    maze[x][y] = 'X';
-	    if( solveDFS(x + 1, y) || solveDFS( x, y + 1) ||
-		solveDFS(x - 1, y) ||	solveDFS(x, y - 1)){
+	    if( solveDFS(x + 1, y, animate) || solveDFS( x, y + 1, animate) ||
+		solveDFS(x - 1, y, animate) ||	solveDFS(x, y - 1, animate)){
 		return true;
 	    }
 	    maze[x][y] = '.';}
