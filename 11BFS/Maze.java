@@ -9,6 +9,8 @@ public class Maze{
     private static final String hide =  "\033[?25l";
     private static final String show =  "\033[?25h";
     
+    MyDeque frontier;
+
     private String go(int x,int y){
     return ("\033[" + x + ";" + y + "H");
     }
@@ -65,7 +67,15 @@ public class Maze{
      * When animate is true, print the board at each step of the algorithm.
      * Replace spaces with x's as you traverse the maze. 
      */
-    // public boolean solveBFS(boolean animate){    }
+    public boolean solveBFS(boolean animate){   
+	if (animate == true){ 
+	    wait(10);
+	    clearTerminal();
+	    System.out.println(this);
+	}
+	
+	
+    }
     
     public boolean solveDFS(boolean animate){  
 	if(startx < 0){
@@ -106,9 +116,9 @@ public class Maze{
 	return false;
     }
 
-    //    public boolean solveBFS(){
-    //	return solveBFS(false);
-    //}
+    public boolean solveBFS(){
+	return solveBFS(false);
+    }
     public boolean solveDFS(){
 	return solveDFS(false);
     }
@@ -126,8 +136,6 @@ public class Maze{
 
 
 }
-
-
 
 
 
