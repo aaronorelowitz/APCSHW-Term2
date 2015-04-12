@@ -22,10 +22,8 @@ public class Maze{
 	    while(in.hasNext()){
 		String line = in.nextLine();
 		if(maxy == 0){
-		    //calculate width of the maze
 		    maxx = line.length();
 		}
-		//every new line add 1 to the height of the maze
 		maxy++;
 		ans += line;
 	    }
@@ -69,10 +67,6 @@ public class Maze{
      */
     // public boolean solveBFS(boolean animate){    }
     
-    /**Solve the maze using a frontier in a DFS manner. 
-     * When animate is true, print the board at each step of the algorithm.
-     * Replace spaces with x's as you traverse the maze. 
-     */
     public boolean solveDFS(boolean animate){  
 	if(startx < 0){
 	    System.out.println("No starting point 'S' found in maze.");
