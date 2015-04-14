@@ -1,9 +1,11 @@
 public class MyDeque {
     private Object[] list;
+    private int[] weights
     private int start, size;
 
     public MyDeque(int len) {
         list = new Object[len];
+	weights = new int[len];
 	start = 0;
 	size = 0;
     }
@@ -23,6 +25,16 @@ public class MyDeque {
         list[(start + size) % list.length] = value;
 	size += 1;
     }
+
+
+    public void add(Object value, int priority) {
+	if (size == list.length)
+	    expand();
+        list[(start + size) % list.length] = value;
+	weights[(start + size) % list.length] = value;
+	size += 1;
+    }
+    
 
     public Object removeFirst() {
 	if (size == list.length / 4)
@@ -61,6 +73,12 @@ public class MyDeque {
 	    newlist[i] = list[(start + i) % list.length];
 	}
         list = newlist;
+
+	int[] newweights = new int[weights.length * 2];
+	for (int i = 0; i < weights.length; i++) {
+	    newweights[i] = weights[(start + i) % weights.length];
+	}
+        weights = newweights;
 	start = 0;
     }
 
@@ -70,6 +88,13 @@ public class MyDeque {
 	    newlist[i] = list[(start + i) % list.length];
 	}
 	list = newlist;
+
+	int[] newweights = new int[weights.length / 2];
+	for (int i = 0; i < weights.length; i++) {
+	    newweights[i] = weights[(start + i) % weights.length];
+	}
+	weights = newweights;
+
 	start = 0;
     }
 }
