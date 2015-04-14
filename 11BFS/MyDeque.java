@@ -64,8 +64,14 @@ public class MyDeque {
 	return list[(start + size) % list.length];
     }
 
+    public Object removeSmallest(){
 
 
+    }
+
+    public Object removeLargest(){
+
+    }
 
     private void expand() {
 	Object[] newlist = new Object[list.length * 2];
