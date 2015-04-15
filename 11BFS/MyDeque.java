@@ -1,6 +1,6 @@
 public class MyDeque {
     private Object[] list;
-    private int[] weights
+    private int[] weights;
     private int start, size;
 
     public MyDeque(int len) {
@@ -31,7 +31,7 @@ public class MyDeque {
 	if (size == list.length)
 	    expand();
         list[(start + size) % list.length] = value;
-	weights[(start + size) % list.length] = value;
+	weights[(start + size) % list.length] = priority;
 	size += 1;
     }
     
@@ -62,15 +62,6 @@ public class MyDeque {
 
     public Object getLast(){
 	return list[(start + size) % list.length];
-    }
-
-    public Object removeSmallest(){
-
-
-    }
-
-    public Object removeLargest(){
-
     }
 
     private void expand() {
