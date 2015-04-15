@@ -108,10 +108,18 @@ public class Maze{
 	}
 	if(maze[x][y] == ' '){
 	    maze[x][y] = 'X';
-	    if(maze[x+1][y] == ' '){frontier.addLast([x+1, y])}
-	    if(maze[x+1][y] == ' '){frontier.addLast([x-1, y])}
-	    if(maze[x+1][y] == ' '){frontier.addLast([x, y + 1])}
-	    if(maze[x+1][y] == ' '){frontier.addLast([x, y - 1])}
+	    if(maze[x+1][y] == ' '){
+		frontier.addLast(x + 1);
+		frontier.addLast(y);}
+	    if(maze[x-1][y] == ' '){
+		frontier.addLast(x - 1);
+		frontier.addLast(y);}
+	    if(maze[x][y+1] == ' '){
+		frontier.addLast(x);
+		frontier.addLast(y + 1);}
+	    if(maze[x][y-1] == ' '){
+		frontier.addLast(x);
+	    	frontier.addLast(y - 1);}
 		    
 	  
 	    if( solveDFS(x + 1, y, animate) || solveDFS( x, y + 1, animate) ||
@@ -142,7 +150,6 @@ public class Maze{
 
 
 }
-
 
 
 
