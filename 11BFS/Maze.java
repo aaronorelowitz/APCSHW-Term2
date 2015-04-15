@@ -73,7 +73,7 @@ public class Maze{
 	    clearTerminal();
 	    System.out.println(this);
 	}
-	
+	return false;
 	
     }
     
@@ -108,6 +108,12 @@ public class Maze{
 	}
 	if(maze[x][y] == ' '){
 	    maze[x][y] = 'X';
+	    if(maze[x+1][y] == ' '){frontier.addLast([x+1, y])}
+	    if(maze[x+1][y] == ' '){frontier.addLast([x-1, y])}
+	    if(maze[x+1][y] == ' '){frontier.addLast([x, y + 1])}
+	    if(maze[x+1][y] == ' '){frontier.addLast([x, y - 1])}
+		    
+	  
 	    if( solveDFS(x + 1, y, animate) || solveDFS( x, y + 1, animate) ||
 		solveDFS(x - 1, y, animate) ||	solveDFS(x, y - 1, animate)){
 		return true;
@@ -136,9 +142,6 @@ public class Maze{
 
 
 }
-
-
-
 
 
 
