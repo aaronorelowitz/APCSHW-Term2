@@ -76,59 +76,44 @@ public class Maze{
 	return false;
 	
     }
-    
-    public boolean solveDFS(boolean animate){  
+
+    public boolean solve(boolean animate, int mode){
 	if(startx < 0){
-	    System.out.println("No starting point 'S' found in maze.");
+	    System.out.println("No starting point");
 	    return false;
-	}else{
-	    maze[startx][starty] = ' ';
-	    return solveDFS(startx,starty, animate);
 	}
-	
-    }
-    
-    public void wait(int millis){
-	try {
-	    Thread.sleep(millis);
+	int[] z = {startx, starty};
+	frontier.add(z);
+	boolean solved = false;
+	int[] next = new int[2];
+	while (!solved && frontier.size() > 0){
+	    if (animate && !solved){
+		System.out.println(toString(true));
+		System.out.println(frontierToString());
+		wait(50);
+	    }
+	    if (mode == BFS){
+		maze[next[1]][next[0]] = '.';
+	        next = frontier.removeFirst();
+	    }
+	    if (mode == DFS){
+		maze[next[1]][next[0]] = '.';
+	        next = frontier.removeLast();
+	    }
+	    if (maze[next[1]][next[0]] == 'E'){
+		solved = true;
+		break;
+	    }else{ 
+		maze[next[1]][next[0]] = 'X';
+		for (int[] a : getNeighbors(next[0],next[1])){
+		    frontier.addLast(a);
+		}
+	    }
 	}
-	catch (InterruptedException e) {
-	}
+	return solved;
     }
 
-    public boolean solveDFS(int x, int y, boolean animate){
-	if (animate == true){
-	    wait(10);
-	    clearTerminal();
-	    System.out.println(this);
-	}
-	if(maze[x][y] == 'E'){
-	    System.out.println(this);
-	    return true;
-	}
-	if(maze[x][y] == ' '){
-	    maze[x][y] = 'X';
-	    if(maze[x+1][y] == ' '){
-		frontier.addLast(x + 1);
-		frontier.addLast(y);}
-	    if(maze[x-1][y] == ' '){
-		frontier.addLast(x - 1);
-		frontier.addLast(y);}
-	    if(maze[x][y+1] == ' '){
-		frontier.addLast(x);
-		frontier.addLast(y + 1);}
-	    if(maze[x][y-1] == ' '){
-		frontier.addLast(x);
-	    	frontier.addLast(y - 1);}
-		    
-	  
-	    if( solveDFS(x + 1, y, animate) || solveDFS( x, y + 1, animate) ||
-		solveDFS(x - 1, y, animate) ||	solveDFS(x, y - 1, animate)){
-		return true;
-	    }
-	    maze[x][y] = '.';}
-	return false;
-    }
+   
 
     public boolean solveBFS(){
 	return solveBFS(false);
