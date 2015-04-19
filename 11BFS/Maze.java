@@ -8,6 +8,7 @@ public class Maze{
     private static final String clear =  "\033[2J";
     private static final String hide =  "\033[?25l";
     private static final String show =  "\033[?25h";
+    private static final String invert =  "[37";
     
     MyDeque frontier;
 
