@@ -47,7 +47,6 @@ public class Maze{
 	}
     }
 
-
     public String toString(){
         return toString(false);
     }
@@ -83,27 +82,36 @@ public class Maze{
 	return hide+out+"]\n"+show;
     }
     
-    
-    
-    /**Solve the maze using a frontier in a BFS manner. 
-     * When animate is true, print the board at each step of the algorithm.
-     * Replace spaces with x's as you traverse the maze. 
-     */
-    public boolean solveBFS(boolean animate){   
-	if (animate == true){ 
-	    clearTerminal();
-	    System.out.println(this);
+    public boolean solveBFS(boolean animate){
+	if(startx < 0){
+	    System.out.println("No starting point 'S' found in maze.");
+	    return false;
 	}
-	return false;
-	
-    }
-
-   
-
-    public boolean solveBFS(){
-	return solveBFS(false);
+	boolean solved = false;
+	int[] next = new int[2];
+	while (!solved && frontier.size() > 0){
+	    if (animate && !solved){
+		System.out.println(clear + toString(true));
+		System.out.println(frontierToString());
+	    }
+	    maze[next[1]][next[0]] = '.';
+	    maze[starty][startx] = 'S';
+	    maze[0][0] = '#';
+	    next = frontier.removeFirst();
+	    if (maze[next[1]][next[0]] == 'E'){
+		solved = true;
+		return solved;
+	    }else{ 
+		maze[next[1]][next[0]] = '.';
+		for (int[] a : getNeighbors(next[0],next[1])){
+		    frontier.addLast(a);
+		}
+	    }
+	}
+	return solved;
     }
   
+
     public boolean solveDFS(boolean animate){
 	if(startx < 0){
 	    System.out.println("No starting point 'S' found in maze.");
@@ -123,18 +131,13 @@ public class Maze{
 	    if (maze[next[1]][next[0]] == 'E'){
 		solved = true;
 		return solved;
-	    }else{ //if its not solved
-		moves.add(next);
+	    }else{
 		maze[next[1]][next[0]] = '.';
 		for (int[] a : getNeighbors(next[0],next[1])){
 		    frontier.addLast(a);
 		}
 	    }
 	}
-	if (!solved){
-	    System.out.println("Sorry, we could not find a solution!");
-	}
-	
 	return solved;
     }
 
