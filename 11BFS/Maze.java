@@ -46,22 +46,22 @@ public class Maze{
 	}
     }
 
+
     public String toString(){
-	String ans = "Solving a maze that is " + maxx + " by " + maxy + "\n";
-	for(int i = 0; i < maxx * maxy; i++){
-	    if(i % maxx == 0 && i != 0){
-		ans += "\n";
-	    }
-	    char c =  maze[i % maxx][i / maxx];
-	    if(c == '#'){
-		ans += c;
-	    }else{
-		ans += c;
-	    }
-	}
-	return hide + go(0,0) + ans + "\n" + show;
+        return toString(false);
     }
-    
+    public String toString(boolean animate) {
+	String ans = ""+maxx+","+maxy+"\n";
+	for(int i=0;i<maxx*maxy;i++){
+	    if(i%maxx ==0 && i!=0){
+		ans+="\n";
+	    }
+	    ans += maze[i%maxx][i/maxx];
+	}
+	if (animate)
+	    return hide+invert+go(0,0)+ans+"\n"+show;
+	return ans;
+    }
     
     /**Solve the maze using a frontier in a BFS manner. 
      * When animate is true, print the board at each step of the algorithm.
@@ -77,51 +77,50 @@ public class Maze{
 	
     }
 
-    public boolean solve(boolean animate, int mode){
-	if(startx < 0){
-	    System.out.println("No starting point");
-	    return false;
-	}
-	int[] z = {startx, starty};
-	frontier.add(z);
-	boolean solved = false;
-	int[] next = new int[2];
-	while (!solved && frontier.size() > 0){
-	    if (animate && !solved){
-		System.out.println(toString(true));
-		System.out.println(frontierToString());
-		wait(50);
-	    }
-	    if (mode == BFS){
-		maze[next[1]][next[0]] = '.';
-	        next = frontier.removeFirst();
-	    }
-	    if (mode == DFS){
-		maze[next[1]][next[0]] = '.';
-	        next = frontier.removeLast();
-	    }
-	    if (maze[next[1]][next[0]] == 'E'){
-		solved = true;
-		break;
-	    }else{ 
-		maze[next[1]][next[0]] = 'X';
-		for (int[] a : getNeighbors(next[0],next[1])){
-		    frontier.addLast(a);
-		}
-	    }
-	}
-	return solved;
-    }
-
    
 
     public boolean solveBFS(){
 	return solveBFS(false);
     }
-    public boolean solveDFS(){
-	return solveDFS(false);
+  
+    public boolean solveDFS(boolean animate){
+	if(startx < 0){
+	    System.out.println("No starting point 'S' found in maze.");
+	    return false;
+	}
+	boolean solved = false;
+	int[] next = new int[2];
+	while (!solved && frontier.size() > 0){
+	    if (animate && !solved){
+		System.out.println(clear + toString(true));
+		System.out.println(frontierToString());
+		wait(50);
+	    }
+	    maze[next[1]][next[0]] = '.';
+	    maze[starty][startx] = 'S';
+	    maze[0][0] = '#';
+	    if (mode == DFS){
+	        next = frontier.removeLast();
+	    }
+	    //check if its solved
+	    if (maze[next[1]][next[0]] == 'E'){
+		solved = true;
+		return solved;
+		 moves.add(next);
+	    }else{ //if its not solved
+		maze[next[1]][next[0]] = '.';
+		for (int[] a : getNeighbors(next[0],next[1])){
+		    frontier.addLast(a);
+		}
+	    }
+	}
+	if (!solved){
+	    System.out.println("Sorry, we could not find a solution!");
+	}
+	
+	return solved;
     }
-    
+
 
     public void clearTerminal(){
 	System.out.println(clear);}
