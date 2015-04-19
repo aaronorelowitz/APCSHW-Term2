@@ -10,7 +10,7 @@ public class Maze{
     private static final String show =  "\033[?25h";
     private static final String invert =  "[37";
     
-    MyDeque frontier;
+    MyDeque<int[]> frontier, moves; 
 
     private String go(int x,int y){
     return ("\033[" + x + ";" + y + "H");
@@ -64,6 +64,30 @@ public class Maze{
 	return ans;
     }
     
+    public String frontierToString(){
+	if (frontier.size() == 0) {
+	    return "[ ]";
+	}
+	String out = "[ ";
+	int h = frontier.getStart();
+	int t = frontier.getEnd();
+	if (h < t){
+	    for (int i = h; i < t; i++){
+		out += "[" + frontier.get(i)[0] +", " + frontier.get(i)[1] +"]";
+	    }
+	}else{
+	    for (int i = h; i < frontier.size(); i++){
+		out += "[" + frontier.get(i)[0]+", " + frontier.get(i)[1] +"] , ";
+	    }
+	    for (int i = 0; i <= t; i++){
+		out += "[" + frontier.get(i)[0]+", " + frontier.get(i)[1] +"] , ";
+	    }
+	}
+	return hide+out+"]\n"+show;
+    }
+    
+    
+    
     /**Solve the maze using a frontier in a BFS manner. 
      * When animate is true, print the board at each step of the algorithm.
      * Replace spaces with x's as you traverse the maze. 
@@ -100,10 +124,7 @@ public class Maze{
 	    maze[next[1]][next[0]] = '.';
 	    maze[starty][startx] = 'S';
 	    maze[0][0] = '#';
-	    if (mode == DFS){
-	        next = frontier.removeLast();
-	    }
-	    //check if its solved
+	    next = frontier.removeLast();
 	    if (maze[next[1]][next[0]] == 'E'){
 		solved = true;
 		return solved;
