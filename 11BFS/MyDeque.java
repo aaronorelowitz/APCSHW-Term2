@@ -21,6 +21,9 @@ public class MyDeque<T> {
 	size = 0;
     }
 
+    public int size() {
+	return size;
+    }	
 
     public void addFirst(T value) {
 	if (size == list.length)
