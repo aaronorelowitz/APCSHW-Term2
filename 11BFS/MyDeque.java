@@ -61,10 +61,10 @@ public class MyDeque<T> {
     }
     
 
-    public Object removeFirst() {
+    public T removeFirst() {
 	if (size == list.length / 4)
 	    contract();
-        Object ans = list[start];
+        T ans = list[start];
 	list[start] = null;
 	start = (list.length + start + 1) % list.length;
 	size -= 1;
