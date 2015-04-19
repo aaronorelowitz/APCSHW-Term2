@@ -11,7 +11,6 @@ public class MyDeque<T> {
 	list = (T[]) (new Object[10]);
         weights = new int[10];
         start = 0;
-	tail = 10-1;
 	size = 0;
     }
     
@@ -20,11 +19,10 @@ public class MyDeque<T> {
 	weights = new int[len];
         start = 0;
 	size = 0;
-	tail  = len - 1;
     }
 
 
-    public void addFirst(Object value) {
+    public void addFirst(T value) {
 	if (size == list.length)
 	    expand();
         list[(list.length + start - 1) % list.length] = value;
@@ -32,7 +30,7 @@ public class MyDeque<T> {
 	size += 1;
     }
 
-    public void addLast(Object value) {
+    public void addLast(T value) {
 	if (size == list.length)
 	    expand();
         list[(start + size) % list.length] = value;
@@ -40,7 +38,7 @@ public class MyDeque<T> {
     }
 
 
-    public void add(Object value, int priority) {
+    public void add(T value, int priority) {
 	if (size == list.length)
 	    expand();
         list[(start + size) % list.length] = value;
@@ -68,17 +66,17 @@ public class MyDeque<T> {
 	return ans;
     }
 
-    public Object getFirst(){
+    public T getFirst(){
 	return list[start];
     }
 
 
-    public Object getLast(){
+    public T getLast(){
 	return list[(start + size) % list.length];
     }
 
     private void expand() {
-	Object[] newlist = new Object[list.length * 2];
+	T[] newlist = (T[])new Object[list.length * 2];
 	for (int i = 0; i < list.length; i++) {
 	    newlist[i] = list[(start + i) % list.length];
 	}
@@ -93,7 +91,7 @@ public class MyDeque<T> {
     }
 
     private void contract() {
-	Object[] newlist = new Object[list.length / 2];
+        T[] newlist = (T[])new Object[list.length / 2];
 	for (int i = 0; i < list.length; i++) {
 	    newlist[i] = list[(start + i) % list.length];
 	}
