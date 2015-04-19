@@ -73,15 +73,12 @@ public class Maze{
 	int t = frontier.getEnd();
 	if (h < t){
 	    for (int i = h; i < t; i++){
-		out += "[" + frontier.get(i)[0] +", " + frontier.get(i)[1] +"]";
-	    }
+		out += "[" + frontier.get(i)[0] +", " + frontier.get(i)[1] +"]";}
 	}else{
 	    for (int i = h; i < frontier.size(); i++){
-		out += "[" + frontier.get(i)[0]+", " + frontier.get(i)[1] +"] , ";
-	    }
+		out += "[" + frontier.get(i)[0]+", " + frontier.get(i)[1] +"] , ";}
 	    for (int i = 0; i <= t; i++){
-		out += "[" + frontier.get(i)[0]+", " + frontier.get(i)[1] +"] , ";
-	    }
+		out += "[" + frontier.get(i)[0]+", " + frontier.get(i)[1] +"] , ";}
 	}
 	return hide+out+"]\n"+show;
     }
@@ -94,7 +91,6 @@ public class Maze{
      */
     public boolean solveBFS(boolean animate){   
 	if (animate == true){ 
-	    wait(10);
 	    clearTerminal();
 	    System.out.println(this);
 	}
@@ -119,7 +115,6 @@ public class Maze{
 	    if (animate && !solved){
 		System.out.println(clear + toString(true));
 		System.out.println(frontierToString());
-		wait(50);
 	    }
 	    maze[next[1]][next[0]] = '.';
 	    maze[starty][startx] = 'S';
@@ -128,8 +123,8 @@ public class Maze{
 	    if (maze[next[1]][next[0]] == 'E'){
 		solved = true;
 		return solved;
-		 moves.add(next);
 	    }else{ //if its not solved
+		moves.add(next);
 		maze[next[1]][next[0]] = '.';
 		for (int[] a : getNeighbors(next[0],next[1])){
 		    frontier.addLast(a);
@@ -141,6 +136,44 @@ public class Maze{
 	}
 	
 	return solved;
+    }
+
+    
+    public ArrayList<int[]> getNeighbors(int x, int y){
+	ArrayList<int[]> neighbors = new ArrayList<int[]>();
+	if (maze[y][x+1] == 'E'){
+	    int[]ans = {x+1, y};
+	    neighbors.add(ans);
+	    return neighbors;	}
+	if (maze[y][x-1] == 'E'){ 
+	    int[]ans = {x-1, y};
+	    neighbors.add(ans);
+	    return neighbors;	}
+	if (maze[y+1][x] == 'E'){ 
+	    int[]ans = {x, y+1};
+	    neighbors.add(ans);
+	    return neighbors;	}
+	if (maze[y-1][x] == 'E'){ 
+	    int[]ans = {x, y-1};
+	    neighbors.add(ans);
+	    return neighbors;	}
+	if (maze[y][x+1] == ' '){
+	    maze[y][x+1] = 'X';
+	    int[]ans = {x+1, y};
+	    neighbors.add(ans);	}
+	if (maze[y][x-1] == ' '){
+	    maze[y][x-1] = 'X';
+	    int[]ans = {x-1, y};
+	    neighbors.add(ans);	} 
+	if (maze[y+1][x] == ' '){
+	    maze[y+1][x] = 'X';
+	    int[]ans = {x, y+1};
+	    neighbors.add(ans);	}
+	if (maze[y-1][x] == ' '){
+	    maze[y-1][x] = 'X';
+	    int[]ans = {x, y-1};
+	    neighbors.add(ans);	}
+	return neighbors;
     }
 
 
