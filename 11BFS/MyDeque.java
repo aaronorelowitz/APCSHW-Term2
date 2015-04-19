@@ -45,6 +45,12 @@ public class MyDeque<T> {
 	size += 1;
     }
 
+    public void add(T value) {
+	if (size == list.length)
+	    expand();
+        list[(start + size) % list.length] = value;
+	size += 1;
+    }
 
     public void add(T value, int priority) {
 	if (size == list.length)
@@ -69,10 +75,10 @@ public class MyDeque<T> {
 	return size;
     }
 
-    public Object removeLast() {
+    public T removeLast() {
 	if (size == list.length / 4)
 	    contract();
-        Object ans = list[(start + size - 1) % list.length];
+        T ans = list[(start + size - 1) % list.length];
 	list[(start + size - 1) % list.length] = null;
 	size -= 1;
 	return ans;
