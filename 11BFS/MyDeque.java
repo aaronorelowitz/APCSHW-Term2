@@ -1,13 +1,26 @@
-public class MyDeque {
-    private Object[] list;
-    private int[] weights;
-    private int start, size;
+import java.util.*;
+import java.io.*;
 
-    public MyDeque(int len) {
-        list = new Object[len];
-	weights = new int[len];
-	start = 0;
+public class MyDeque<T> {
+
+    private T[] list;
+    private int[] weights;
+    private int start, tail ,size;
+
+    public MyDeque() {
+	list = (T[]) (new Object[10]);
+        weights = new int[10];
+        start = 0;
+	tail = 10-1;
 	size = 0;
+    }
+    
+    public MyDeque(int len) {
+        list = (T[]) new Object[len];
+	weights = new int[len];
+        start = 0;
+	size = 0;
+	tail  = len - 1;
     }
 
 
