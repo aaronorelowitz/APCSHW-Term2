@@ -13,6 +13,14 @@ public class MyDeque<T> {
         start = 0;
 	size = 0;
     }
+
+    public int getStart(){
+	return start;
+    }
+    public int getEnd(){
+	return (start + size) % list.length;
+    }
+
     
     public MyDeque(int len) {
         list = (T[]) new Object[len];
@@ -21,9 +29,6 @@ public class MyDeque<T> {
 	size = 0;
     }
 
-    public int size() {
-	return size;
-    }	
 
     public void addFirst(T value) {
 	if (size == list.length)
@@ -58,6 +63,10 @@ public class MyDeque<T> {
 	start = (list.length + start + 1) % list.length;
 	size -= 1;
 	return ans;
+    }
+
+    public int size() {
+	return size;
     }
 
     public Object removeLast() {
@@ -107,5 +116,22 @@ public class MyDeque<T> {
 	weights = newweights;
 
 	start = 0;
+    }
+
+
+        public T get(int index){
+	if (start < (start + size) % list.length){
+	    if (index < start || index > (start + size) % list.length){
+		throw new ArrayIndexOutOfBoundsException();
+	    }
+	}else{
+	    if (index > (start + size) % list.length && index < start){
+		throw new ArrayIndexOutOfBoundsException();
+	    }
+	}
+	if (size == 0){
+	    throw new NoSuchElementException();
+	}
+	return list[index];
     }
 }
