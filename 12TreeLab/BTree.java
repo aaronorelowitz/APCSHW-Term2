@@ -10,7 +10,7 @@ public class BTree<E> {
     private TreeNode<E> root;
 
     public class TreeNode<E> {
-	public E data;
+	private E data;
 	private TreeNode<E> left;
 	private TreeNode<E> right;
 	
@@ -18,6 +18,30 @@ public class BTree<E> {
 	    data = val;
 	    left = null;
 	    right = null;
+	}
+	
+	public void setData(E val){
+	    data = val;
+	}
+
+	public void setRight(TreeNode<E> node){
+	    right = node;
+	}
+	
+	public void setLeft(TreeNode<E> node){
+	    left = node;
+	}
+
+	public void getData(){
+	    return data;
+	}
+
+	public E getRight(){
+	    return right;
+	}
+	
+	public E getLeft(){
+	    return left;
 	}
 
     }
