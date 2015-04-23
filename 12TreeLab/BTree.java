@@ -32,7 +32,7 @@ public class BTree<E> {
 	    left = node;
 	}
 
-	public void getData(){
+	public E getData(){
 	    return data;
 	}
 
@@ -57,7 +57,12 @@ public class BTree<E> {
       
       Wrapper method for the recursive add()
       ====================*/     
-    public void add( E d ) {}
+    public void add( E d ) {
+	TreeNode<E> X = new TreeNode(d);
+	if (root == null){
+	    root = X;}
+	else{add(root, X);} 
+    }
 
     /*======== public void add() ==========
       Inputs:   TreeNode<E> curr, TreeNode<E> bn  
