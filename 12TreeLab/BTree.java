@@ -38,11 +38,11 @@ public class BTree<E> {
 	    return data;
 	}
 
-	public E getRight(){
+	public TreeNode getRight(){
 	    return right;
 	}
 	
-	public E getLeft(){
+	public TreeNode getLeft(){
 	    return left;
 	}
 
@@ -79,15 +79,15 @@ public class BTree<E> {
       ====================*/
     private void add( TreeNode<E> curr, TreeNode<E> bn ) {
 	int num = random.nextInt(2);
-	if(curr.getLeft() == null && curr.getRight != null){
+	if(curr.getLeft() == null && curr.getRight() != null){
 	    curr.setLeft(bn);}
-	else if (curr.getRight() == null && curr.getLeft != null){
+	else if (curr.getRight() == null && curr.getLeft() != null){
 	    curr.setRight(bn);}
-	else if(curr.getRight() == null && curr.getLeft == null){
-	    if(num == 1){curr.setLeft(bn)}
-	    else{curr.setRight(bn)}
-	}else if(num == 1){add(curr.getRight(), bn)}
-	else(add(curr.getLeft(), bn))
+	else if(curr.getRight() == null && curr.getLeft() == null){
+	    if(num == 1){curr.setLeft(bn);}
+	    else{curr.setRight(bn);}
+	}else if(num == 1){add(curr.getRight(), bn);}
+	else{add(curr.getLeft(), bn);}
 	    
     }
     
