@@ -8,6 +8,7 @@ public class BTree<E> {
     public static final int IN_ORDER = 1;
     public static final int POST_ORDER = 2;
     private TreeNode<E> root;
+    private Random random;
 
     public class TreeNode<E> {
 	private E data;
@@ -18,6 +19,7 @@ public class BTree<E> {
 	    data = val;
 	    left = null;
 	    right = null;
+	    random = new Random();
 	}
 	
 	public void setData(E val){
@@ -76,6 +78,17 @@ public class BTree<E> {
       added to randomly.
       ====================*/
     private void add( TreeNode<E> curr, TreeNode<E> bn ) {
+	int num = random.nextInt(2);
+	if(curr.getLeft() == null && curr.getRight != null){
+	    curr.setLeft(bn);}
+	else if (curr.getRight() == null && curr.getLeft != null){
+	    curr.setRight(bn);}
+	else if(curr.getRight() == null && curr.getLeft == null){
+	    if(num == 1){curr.setLeft(bn)}
+	    else{curr.setRight(bn)}
+	}else if(num == 1){add(curr.getRight(), bn)}
+	else(add(curr.getLeft(), bn))
+	    
     }
     
     public void traverse( int mode) {
