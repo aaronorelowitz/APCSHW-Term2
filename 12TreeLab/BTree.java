@@ -1,5 +1,4 @@
 
-
 import java.io.*;
 import java.util.*;
 
@@ -69,7 +68,7 @@ public class BTree<E> {
 
     /*======== public void add() ==========
       Inputs:   TreeNode<E> curr, TreeNode<E> bn  
-      Returns: 
+      Returns:
       
       Adds bn to the tree rooted at curr. If curr has 
       an available child space, then attach bn there.
@@ -109,7 +108,10 @@ public class BTree<E> {
       pre-order Traversal
       ====================*/
     public void preOrder( TreeNode<E> curr ) {
-
+	if(curr != null){ 
+	    System.out.println(curr.getData() + "");
+	    preOrder(curr.getLeft());
+	    preOrder(curr.getRight());}
 
     }
 
@@ -123,9 +125,9 @@ public class BTree<E> {
       ====================*/
     public void inOrder( TreeNode<E> curr ) {
 	if(curr != null){
-	    preOrder(curr.getLeft());
+	    inOrder(curr.getLeft());
 	    System.out.println(curr.getData() + "");
-	    preOrder(curr.getRight());}
+	    inOrder(curr.getRight());}
 
     }
 
@@ -137,7 +139,10 @@ public class BTree<E> {
       post-order Traversal    
       ====================*/
     public void postOrder( TreeNode<E> curr ) {
-	
+	if(curr != null){ 
+	    postOrder(curr.getLeft()); 
+	    postOrder(curr.getRight());
+	    System.out.println(curr.getData() + ""); }
     }
     
     /*======== public int getHeight()) ==========
@@ -194,7 +199,7 @@ public class BTree<E> {
 
 	BTree<Integer> t = new BTree<Integer>();
 
-	for ( int i=0; i < 8; i++ ) 
+	for ( int i=0; i < 7; i++ ) 
 	    t.add( i );
 	System.out.println( "Pre-order: ");
 	t.traverse( PRE_ORDER );
