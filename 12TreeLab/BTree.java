@@ -68,7 +68,7 @@ public class BTree<E> {
 
     /*======== public void add() ==========
       Inputs:   TreeNode<E> curr, TreeNode<E> bn  
-      Returns:
+      Returns: 
       
       Adds bn to the tree rooted at curr. If curr has 
       an available child space, then attach bn there.
@@ -151,15 +151,21 @@ public class BTree<E> {
       Wrapper for the recursive getHeight method
       ====================*/
     public int getHeight() {
-	return getHeight( root );
+	return getHeight( root, 0 );
     }
     /*======== public int getHeight() ==========
       Inputs:   TreeNode<E> curr  
       Returns:  The height of the tree rooted at node curr
       
       ====================*/
-    public int getHeight( TreeNode<E> curr ) {
-	return -1;
+    public int getHeight( TreeNode<E> curr, int counter ) {
+        if (curr == null){
+	    return counter;}
+	int left = getHeight(curr.getLeft(), counter +1);
+	int right = getHeight(curr.getRight(), counter + 1);
+	if (left > right)
+	    return left;
+	return right;
     }
 
     /*======== public String getLevel() ==========
@@ -170,7 +176,7 @@ public class BTree<E> {
                given level, ordered left -> right
       
       ====================*/
-    private String getLevel( TreeNode<E> curr, int level, int currLevel ) {
+    private String getLevel( TreeNode<E> curr, int level) {
 	return "";
     }
     
@@ -191,7 +197,7 @@ public class BTree<E> {
             3  4   5
       ====================*/
     public String toString() {
-	return "";
+	;
     }
 	
 
@@ -212,3 +218,4 @@ public class BTree<E> {
 	System.out.println( t );
     }
 }
+
