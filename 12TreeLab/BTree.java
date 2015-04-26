@@ -1,4 +1,5 @@
 
+
 import java.io.*;
 import java.util.*;
 
@@ -72,7 +73,6 @@ public class BTree<E> {
       
       Adds bn to the tree rooted at curr. If curr has 
       an available child space, then attach bn there.
-
       Otherwise, try to add at the subtree rooted at
       one of curr's children. Choose the child to be
       added to randomly.
@@ -109,6 +109,8 @@ public class BTree<E> {
       pre-order Traversal
       ====================*/
     public void preOrder( TreeNode<E> curr ) {
+
+
     }
 
 
@@ -120,6 +122,11 @@ public class BTree<E> {
       in-order Traversal
       ====================*/
     public void inOrder( TreeNode<E> curr ) {
+	if(curr != null){
+	    preOrder(curr.getLeft());
+	    System.out.println(curr.getData() + "");
+	    preOrder(curr.getRight());}
+
     }
 
     /*======== public void postOrder() ==========
@@ -128,15 +135,14 @@ public class BTree<E> {
       
       Prints out the elements in the tree by doing a
       post-order Traversal    
-
       ====================*/
     public void postOrder( TreeNode<E> curr ) {
+	
     }
     
     /*======== public int getHeight()) ==========
       Inputs:   
       Returns: The height of the tree
-
       Wrapper for the recursive getHeight method
       ====================*/
     public int getHeight() {
@@ -169,20 +175,15 @@ public class BTree<E> {
      
       This string should display each level as a separate line.
       A simple version might look something like this:
-
       0
       1 2
       3 4 5
-
       Note that you cannot tell exactly where 3, 4 and 5 lie.
       That is ok, but if you want a CHALLENGE, you can try to
       get the output to look nicer, something like this:
              0
-
           1      2
-
             3  4   5
-
       ====================*/
     public String toString() {
 	return "";
