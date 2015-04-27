@@ -177,7 +177,8 @@ public class BTree<E> {
       
       ====================*/
     private String getLevel( TreeNode<E> curr, int level) {
-	return "";
+	    return "";
+	
     }
     
     /*======== public String toString()) ==========
@@ -197,7 +198,7 @@ public class BTree<E> {
             3  4   5
       ====================*/
     public String toString() {
-	;
+	return "";
     }
 	
 
@@ -218,4 +219,3 @@ public class BTree<E> {
 	System.out.println( t );
     }
 }
-
