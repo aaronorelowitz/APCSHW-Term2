@@ -168,6 +168,10 @@ public class BTree<E> {
 	return right;
     }
 
+    public int getHeight( TreeNode<E> curr ) {
+        return getHeight(curr, 0);
+    }
+
     /*======== public String getLevel() ==========
       Inputs:   TreeNode<E> curr
                 int level
@@ -177,9 +181,27 @@ public class BTree<E> {
       
       ====================*/
     private String getLevel( TreeNode<E> curr, int level) {
-	    return "";
-	
+	if (curr == null)
+	    return " ";
+	if (level == 0)
+	    return " "+root.getData();
+	if (level == 1)
+	    return " "+root.getLeft().getData() +" "+ root.getRight().getData();
+	else{
+	    if (level == getHeight(root) - getHeight(curr)){
+		return " "+curr.getData();
+	    }else{
+		return " "+getLevel(curr.getLeft(), level) +" "+getLevel(curr.getRight(), level);
+	    }
+	}
+	    
     }
+
+    private String getLevel(int level){
+	return getLevel(root, level);
+    }
+
+    
     
     /*======== public String toString()) ==========
       Inputs:   
@@ -197,16 +219,23 @@ public class BTree<E> {
           1      2
             3  4   5
       ====================*/
+
     public String toString() {
-	return "";
+        int height = getHeight();
+	String s = "" + root.getData() + "\n";
+	for (int i = 1; i <= height; i++){
+	    s+=getLevel(i) + "\n";
+	}
+	return s;
     }
-	
+
+
 
     public static void main( String[] args ) {
 
 	BTree<Integer> t = new BTree<Integer>();
 
-	for ( int i=0; i < 7; i++ ) 
+	for ( int i=0; i < 16 ;i++ ) 
 	    t.add( i );
 	System.out.println( "Pre-order: ");
 	t.traverse( PRE_ORDER );
@@ -215,7 +244,11 @@ public class BTree<E> {
 	System.out.println( "Post-order: ");
 	t.traverse( POST_ORDER );
 	System.out.println( "Height: " + t.getHeight() );
-
+	System.out.println( "Level 0: " + t.getLevel(0));
+	System.out.println( "Level 1: " + t.getLevel(1));
+	System.out.println( "Level 2: " + t.getLevel(2));
+	System.out.println( "Level 3: " + t.getLevel(3));
+	System.out.println( "Level 4: " + t.getLevel(4));
 	System.out.println( t );
     }
 }
