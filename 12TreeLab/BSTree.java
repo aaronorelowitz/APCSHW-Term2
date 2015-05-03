@@ -34,10 +34,10 @@ public class BSTree <T extends Comparable> {
     private BSTreeNode<T> add(BSTreeNode<T> curr, BSTreeNode<T> t) {
 	if(curr == null){
 	    return t;}
-	else if (t.compareTo(curr) > 0){
+	else if (t.compareTo(curr) < 0){
 	    curr.setLeft(add(curr.getLeft(), t));
 	    return curr;}
-	else if(t.compareTo(curr) < 0){
+	else if(t.compareTo(curr) > 0){
 	    curr.setRight(add(curr.getRight(), t));
 	    return curr;}
 	else{return curr;}
