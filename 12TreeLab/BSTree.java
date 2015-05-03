@@ -1,5 +1,3 @@
- 
-
 import java.io.*;
 import java.util.*;
 
@@ -21,7 +19,6 @@ public class BSTree <T extends Comparable> {
     /*======== public void add() ==========
       Inputs:   T c  
       Returns: 
-
       Wrapper for the recursive add method
       ====================*/
     public void add( T c ) {
@@ -32,21 +29,20 @@ public class BSTree <T extends Comparable> {
       Inputs:  BSTreeNode<T> curr
                BSTreeNode<T> t 
       Returns: 
-
       Add t to the correct place in the tree rooted at curr.
       ====================*/
     private BSTreeNode<T> add(BSTreeNode<T> curr, BSTreeNode<T> t) {
-	if(root == null){
+	if(curr == null){
 	    return t;}
-	`else if (t.compareTo(curr) < 0){
-		root.add(curr.getLeft(), t);
-		return root;}
-	    else if(t.compareTo(curr) > 0){
-		
-		   
-
-	    }
+	else if (t.compareTo(curr) < 0){
+	    curr.setLeft(add(curr.getLeft(), t));
+	    return curr;}
+	else if(t.compareTo(curr) > 0){
+	    curr.setRight(add(curr.getRight(), t));
+	    return curr;}
+	else{return curr;}
     }
+		   
 
     /*======== public void remove() ==========
       Inputs:   T c  
@@ -62,7 +58,6 @@ public class BSTree <T extends Comparable> {
       Inputs:   BSTreeNode<T> curr
 		T c
       Returns: 
-
       Should remove the value c from the tree rooted at
       curr, if it exists.
       ====================*/
@@ -74,7 +69,6 @@ public class BSTree <T extends Comparable> {
     /*======== public void inOrder()) ==========
       Inputs:   
       Returns: 
-
       Wrapper for the recursive inOrder method
       ====================*/
     public void inOrder() {
