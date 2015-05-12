@@ -1,4 +1,4 @@
- public class MyHeap{
+public class MyHeap{
 
     private int[]heap;
     private boolean Max; 
@@ -17,6 +17,16 @@
 	int[]newHeap = new int[heap.length * 2];
 	for(int i = 0; i < heap.length; i++){
 	    newHeap[i] = heap[i];}
+	heap = newHeap;
     }
+    
+    public void add(int num){
+	heap[0] = heap[0] + 1;
+	if(heap.length <= heap[0]){
+	    resize();}
+	heap[heap[0]] = num;
+	}
+    }
+
 
 }
