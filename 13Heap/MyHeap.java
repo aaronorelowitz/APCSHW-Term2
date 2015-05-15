@@ -78,6 +78,12 @@ public class MyHeap{
 	}
   }
 
+    public int peak(){
+	return heap[1];}
+
+    public String toString(){
+	return "Unfinished code";}
+
 
 
 }
