@@ -14,6 +14,9 @@ public class MyHeap{
     }
 
 
+    public String name(){
+	return "aaron.orelowitz";}
+
     private void Switch(int x, int y) {
 	int tmp = heap[x];
 	heap[x] = heap[y];
@@ -33,8 +36,8 @@ public class MyHeap{
 
     public boolean compare(int x, int y){
 	if(Max){
-	    return (x > y);}
-	else{return (x < y);}
+	    return (heap[x] > heap[y]);}
+	else{return (heap[x] < heap[y]);}
     }
 
     
