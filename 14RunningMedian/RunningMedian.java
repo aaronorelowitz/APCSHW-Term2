@@ -8,7 +8,7 @@ public class RunningMedian{
 	MaxHeap = new MyHeap(true);}
 
     public Sting name(){
-	return "aaron.orelowitz"}
+	return "orelowitz.aaron"}
 
 
 }
