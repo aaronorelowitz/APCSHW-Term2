@@ -82,7 +82,11 @@ public class MyHeap{
 	return heap[1];}
 
     public String toString(){
-	return "Unfinished code";}
+	string ans = "";
+	for(int x = 0; x < heap.length(); x++){
+	    ans = ans + heap[x];}
+	return ans;
+    }
 
 
 
