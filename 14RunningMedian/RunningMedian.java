@@ -23,4 +23,21 @@ public class RunningMedian{
 	    MaxHeap.peak() + MinHeap.peak() / 2
 	}
     }
+
+    public void add(int val) {
+	if (value < getMedian()) {
+	    MaxHeap.add(value);
+	} else {
+	    MinHeap.add(value);
+	}
+	evenOut();
+    }
+    
+    public void evenOut(){
+	while (math.abs(MinHeap.size() - MaxHeap.size()) > 1){
+	    if(MinHeap.size() - MaxHeap.size() > 1){
+		MaxHeap.add(MinHeap.remove())}
+	    else{MinHeap.add(MaxHeap.remove())}}
+    }
+    
 }
