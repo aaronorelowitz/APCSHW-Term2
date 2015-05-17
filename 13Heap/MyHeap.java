@@ -15,7 +15,7 @@ public class MyHeap{
 
 
     public String name(){
-	return "aaron.orelowitz";}
+	return "orelowitz.aaron";}
 
     private void Switch(int x, int y) {
 	int tmp = heap[x];
